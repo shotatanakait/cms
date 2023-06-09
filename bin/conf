@@ -1,0 +1,5 @@
+contents="cms_contents"
+contents_owner="shotatanakait"
+wwwdir="/var/www"
+contentsdir="$wwwdir/$contents"
+appdir="$wwwdir/cms"
