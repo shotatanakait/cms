@@ -7,6 +7,8 @@ dir="$(tr -dc 'a-zA-Z0-9_=' <<< ${QUERY_STRING} | sed 's;=;s/;')"
 md="$contentsdir/$dir/main.md"
 [ -f "$md" ]
 
-### OUTPUT ###
+### MAKE HTML ###
 pandoc --template="$viewdir/template.html" \
-  -f markdown_github+yaml_metadata_block "$md"
+  -f markdown_github+yaml_metadata_block "$md"  |
+  sed -r "/:\/\/|=\"\//!s;<(img src|a href)=\";&/$dir/;"  |
+  sed "s;/$dir/#;#;g"
