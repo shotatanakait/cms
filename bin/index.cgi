@@ -1,5 +1,8 @@
 #!/bin/bash
 
-echo -e "Content-type: text/html\n"
+source "$(dirname $0)/conf"
 
-echo test
+md="$contentsdir/posts/template/main.md"
+
+echo -e "Content-type: text/html\n"
+pandoc -f markdown_github+yaml_metadata_block "$md"
