@@ -71,7 +71,7 @@ awk '$3~/^pages/' $tmp-list > $tmp-page_list
 mv $tmp-page_list "$datadir/page_list"
 
 # MAKE PREV/NEXT NAVIGATION LINK
-cat "$datadir/post_list"
+cat "$datadir/post_list"  |
 while read ymd hms d ; do
   grep -C1 " $d$" "$datadir/post_list"  |
   awk '{print $3}'  |
