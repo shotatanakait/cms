@@ -14,12 +14,15 @@ md="$contentsdir/$dir/main.md"
 [ -f "$md" ]
 
 ### MAKE METADATA ###
+counter="$datadir/counters/$(tr '/' '_' <<< $dir)"
+echo -n 1 >> "$counter" # increment
 cat << FIN > $tmp-meta.yaml
 ---
 created_time: '$(date -f - < $datadir/$dir/created_time)'
 modified_time: '$(date -f - < $datadir/$dir/modified_time)'
 title: '$(grep '^# ' "$md" | sed 's/^# *//')'
 nav: '$(cat "$datadir/$dir/nav")'
+views: '$(ls -l "$counter" | cut -d' ' -f 5)'
 ---
 FIN
 
