@@ -85,6 +85,8 @@ while read ymd hms d ; do
   tr '\n' ' ' > "$datadir/$d/nav"
 done
 
+rm -f $tmp-* # 中間ファイルの削除
+
 ### MAKE KEYWORD LIST ###
 cd "$contentsdir"
 cat $tmp-list |
@@ -96,5 +98,3 @@ sed 's/ */ /g'  |
 awk '{gsub(/^/,",",$2);print}'  |
 sed 's/$/,/'  > $tmp-keyword_list
 mv $tmp-keyword_list "$datadir/keyword_list"
-
-rm -f $tmp-* # 中間ファイルの削除
