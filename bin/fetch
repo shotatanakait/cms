@@ -94,7 +94,7 @@ sed 's;/main.md:Keywords:; ;' |
 sed 's/ *, */,/g'  |
 sed 's/ */ /g'  |
 awk '{gsub(/^/,",",$2);print}'  |
-sed ''  > $tmp-keyword_list
+sed 's/$/,/'  > $tmp-keyword_list
 mv $tmp-keyword_list "$datadir/keyword_list"
 
 rm -f $tmp-* # 中間ファイルの削除
