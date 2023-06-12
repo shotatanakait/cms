@@ -86,7 +86,7 @@ done
 
 ### MAKE KEYWORD LIST ###
 cd "$contentsdir"
-cat $tmp-list
+cat $tmp-list >> /tmp/foo
 # cat $tmp-list |
 # awk '{print $3 "/main.md"}' |
 # xargs grep -H -m 1 '^Keywords:' |
