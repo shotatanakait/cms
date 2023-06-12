@@ -16,6 +16,7 @@ function lastArticles(num) {
 }
 
 function linkKeywords() {
+  console.log("linkKeywords is called"); // this line will be deleted.
   var httpReq = new XMLHttpRequest();
   httpReq.onreadystatechange = function () {
     if (httpReq.readyState != 4 || httpReq.status != 200) return;
@@ -23,6 +24,7 @@ function linkKeywords() {
   }
 
   var word = document.getElementById("keywords").innerHTML;
+  console.log({ word }); // this line will be deleted.
   var url = "/link_keywords.cgi?keywords=" + encodeURIComponent(word);
   httpReq.open("GET", url, true);
   httpReq.send(null);
