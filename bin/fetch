@@ -86,3 +86,15 @@ while read ymd hms d ; do
 done
 
 rm -f $tmp-* # 中間ファイルの削除
+
+### MAKE KEYWORD LIST ###
+cd "$contentsdir"
+cat $tmp-list |
+awk '{print $3 "/main.md"}' |
+xargs grep -H -m 1 '^Keywords:' |
+sed 's;/main.md:Keywords:; ;' |
+sed 's/ *, */,/g'  |
+sed 's/ */ /g'  |
+awk '{gsub(/^/,",",$2);print}'  |
+sed ''  > $tmp-keyword_list
+mv $tmp-keyword_list "$datadir/keyword_list"
