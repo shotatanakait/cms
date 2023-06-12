@@ -51,7 +51,7 @@ function rankArticles(num) {
     document.getElementById("rank-articles").innerHTML = httpReq.responseText;
   }
 
-  var url = "/rank_articles?num=" + num;
+  var url = "/rank_articles.cgi?num=" + num;
   httpReq.open("GET", url, true);
   httpReq.send(null);
 }
