@@ -86,14 +86,15 @@ done
 
 ### MAKE KEYWORD LIST ###
 cd "$contentsdir"
-cat $tmp-list |
-awk '{print $3 "/main.md"}' |
-xargs grep -H -m 1 '^Keywords:' |
-sed 's;/main.md:Keywords:; ;' |
-sed 's/ *, */,/g'  |
-sed 's/ */ /g'  |
-awk '{gsub(/^/,",",$2);print}'  |
-sed 's/$/,/'  > $tmp-keyword_list
-mv $tmp-keyword_list "$datadir/keyword_list"
+cat $tmp-list
+# cat $tmp-list |
+# awk '{print $3 "/main.md"}' |
+# xargs grep -H -m 1 '^Keywords:' |
+# sed 's;/main.md:Keywords:; ;' |
+# sed 's/ *, */,/g'  |
+# sed 's/ */ /g'  |
+# awk '{gsub(/^/,",",$2);print}'  |
+# sed 's/$/,/'  > $tmp-keyword_list
+# mv $tmp-keyword_list "$datadir/keyword_list"
 
 rm -f $tmp-* # 中間ファイルの削除
