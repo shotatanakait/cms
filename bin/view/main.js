@@ -4,7 +4,6 @@ $(function () {
   lastArticles(POST_COUNT);
   rankArticles(POST_COUNT);
   linkKeywords();
-  // fullSearch("");
 
   // ナビゲーションメニューの開閉をハンドルする
   $(".humberger-btn").click(function () {
@@ -28,14 +27,14 @@ $(function () {
       $("body").toggleClass("noscroll");
     }
   });
-});
 
-// window.onload = function () {
-//   lastArticles(10);
-//   rankArticles(10);
-//   linkKeywords();
-//   fullSearch("");
-// }
+  // Search 押下時にナビゲーションを閉じる
+  $("#full-search-btn").click(function () {
+    $(".humberger-btn").toggleClass("close");
+    $(".header-nav").toggleClass("nav-open");
+    $("body").toggleClass("noscroll");
+  });
+});
 
 function lastArticles(num) {
   var httpReq = new XMLHttpRequest();
@@ -64,7 +63,6 @@ function linkKeywords() {
 
 function fullSearch() {
   var word = document.getElementById("full-search-input").value;
-  console.log({ word });
   var httpReq = new XMLHttpRequest();
   httpReq.onreadystatechange = function () {
     if (httpReq.readyState != 4 || httpReq.status != 200) return;
