@@ -211,6 +211,19 @@ button {
   font-size: 1.6rem;
 }
 
+.social-list {
+  display: flex;
+}
+
+.social-item {
+  list-style: none;
+  margin-right: 1.6rem;
+}
+
+.social-item:last-of-type {
+  margin: 0px;
+}
+
 /* ------------------------ */
 /* footer */
 /* ------------------------ */

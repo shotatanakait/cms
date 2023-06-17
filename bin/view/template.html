@@ -23,6 +23,9 @@ Content-type: text/html
 
     <!-- GITHUB MARKDOWN CSS -->
     <link rel="stylesheet" href="/view/github-markdown.css">
+
+    <!-- FONT AWESOME -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
       .markdown-body {
         box-sizing: border-box;
@@ -103,6 +106,14 @@ Content-type: text/html
         <aside id="widgets" class="section-widget">
           <aside id="last-articles" class="widget-item recent"></aside>
           <aside id="rank-articles" class="widget-item ranking"></aside>
+          <aside id="social-links" class="widget-item">
+            <h1>Social links</h1>
+            <ul class="social-list">
+              $for(sociallinks)$
+              <li class="social-item"><a href="$sociallinks.href$"><i class="fa-brands $sociallinks.icon$ fa-2xl" $sociallinks.style$></i></a></li>
+              $endfor$
+            </ul>
+          </aside>
         </aside>
       </section>
     </main>
