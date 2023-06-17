@@ -52,10 +52,9 @@ Content-type: text/html
         <!-- NAVIGATION -->
         <nav class="header-nav">
           <ul class="nav-list">
-            <!-- <li class="nav-item"><a href="/?page=top">TOP</a></li> -->
-            <li class="nav-item"><a href="/?post">BLOG</a></li>
-            <li class="nav-item"><a href="https://github.com/shotatanakait/cms">REPOSITORY</a></li>
-            <li class="nav-item"><a href="https://portfolio1.shotatanaka.org">PORTFOLIO</a></li>
+            $for(links)$
+            <li class="nav-item"><a href="$links.href$">$links.text$</a></li>
+            $endfor$
             <li class="nav-item">
               <input type="text" placeholder="Search" class="search-input" id="full-search-input" />
               <button type="button" class="search-btn" id="full-search-btn" onclick="fullSearch()">Search</button>
