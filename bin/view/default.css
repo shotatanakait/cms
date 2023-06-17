@@ -186,7 +186,7 @@ button {
 }
 
 /* body */
-.article-body h1 {
+/* .article-body h1 {
   font-size: 3.6rem;
   font-weight: bold;
   border-bottom: 1px solid #5a5a5a;
@@ -216,6 +216,13 @@ button {
 .article-body p {
   margin-bottom: 8px;
 }
+
+.article-body blockquote {
+  color: #656d76;
+  padding-left: 1.6rem;
+  margin-bottom: 1.6rem;
+  border-left: 0.4rem solid #d0d7de;
+} */
 
 /* footer */
 .article-footer {
