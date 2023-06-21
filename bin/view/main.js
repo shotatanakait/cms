@@ -5,6 +5,17 @@ $(function () {
   rankArticles(POST_COUNT);
   linkKeywords();
 
+  // Search ボタンの活性／非活性
+  $serchBtn = $("#full-search-btn");
+  $("#full-search-input").on("input", function (e) {
+    var value = $(this).val();
+    if (!value) {
+      $serchBtn.attr("disabled", true);
+    } else {
+      $serchBtn.attr("disabled", false);
+    }
+  });
+
   // ナビゲーションメニューの開閉をハンドルする
   $(".humberger-btn").click(function () {
     $(this).toggleClass("close");
@@ -28,62 +39,58 @@ $(function () {
     }
   });
 
-  // Search 押下時にナビゲーションを閉じる
-  $("#full-search-btn").click(function () {
+  // ナビゲーション close
+  function closeNavigation() {
     $(".humberger-btn").toggleClass("close");
     $(".header-nav").toggleClass("nav-open");
     $("body").toggleClass("noscroll");
+    $(window).scrollTop(0);
+  }
+
+  // Search 押下時にナビゲーションを閉じる
+  $("#full-search-btn").click(function () {
+    closeNavigation();
+  });
+
+  // Search を Enter key で押下
+  $(document).keypress(function (e) {
+    if (e.which === 13) {
+      if ($("#full-search-input").is(":focus")) {
+        fullSearch();
+        closeNavigation();
+      }
+    }
   });
 });
 
+// 共通の取得処理
+function fetch(url, id) {
+  axios
+    .get(url)
+    .then((response) => {
+      document.getElementById(id).innerHTML = response.data;
+    })
+    .catch((error) => console.error({ error }));
+}
+
+// last posts
 function lastArticles(num) {
-  var httpReq = new XMLHttpRequest();
-  httpReq.onreadystatechange = function () {
-    if (httpReq.readyState != 4 || httpReq.status != 200) return;
-    document.getElementById("last-articles").innerHTML = httpReq.responseText;
-  };
-
-  var url = "/last_articles.cgi?num=" + num;
-  httpReq.open("GET", url, true);
-  httpReq.send(null);
+  fetch("/last_articles.cgi?num=" + num, "last-articles");
 }
 
+// link keywords
 function linkKeywords() {
-  var httpReq = new XMLHttpRequest();
-  httpReq.onreadystatechange = function () {
-    if (httpReq.readyState != 4 || httpReq.status != 200) return;
-    document.getElementById("keywords").innerHTML = httpReq.responseText;
-  };
-
-  var word = document.getElementById("keywords").innerHTML;
-  var url = "/link_keywords.cgi?keywords=" + encodeURIComponent(word);
-  httpReq.open("GET", url, true);
-  httpReq.send(null);
+  const word = document.getElementById("keywords").innerHTML;
+  fetch("/link_keywords.cgi?keywords=" + encodeURIComponent(word), "keywords");
 }
 
+// full search
 function fullSearch() {
-  var word = document.getElementById("full-search-input").value;
-  var httpReq = new XMLHttpRequest();
-  httpReq.onreadystatechange = function () {
-    if (httpReq.readyState != 4 || httpReq.status != 200) return;
-    document.getElementById("article-body").innerHTML = httpReq.responseText;
-    document.body.style.cursor = "default";
-  };
-
-  var url = "/full_search.cgi?word=" + encodeURIComponent(word);
-  httpReq.open("GET", url, true);
-  httpReq.send(null);
-  document.body.style.cursor = "wait";
+  const word = document.getElementById("full-search-input").value;
+  fetch("/full_search.cgi?word=" + encodeURIComponent(word), "article-body");
 }
 
+// pv ranking
 function rankArticles(num) {
-  var httpReq = new XMLHttpRequest();
-  httpReq.onreadystatechange = function () {
-    if (httpReq.readyState != 4 || httpReq.status != 200) return;
-    document.getElementById("rank-articles").innerHTML = httpReq.responseText;
-  };
-
-  var url = "/rank_articles.cgi?num=" + num;
-  httpReq.open("GET", url, true);
-  httpReq.send(null);
+  fetch("/rank_articles.cgi?num=" + num, "rank-articles");
 }

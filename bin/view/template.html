@@ -60,7 +60,7 @@ Content-type: text/html
             $endfor$
             <li class="nav-item">
               <input type="text" placeholder="Search" class="search-input" id="full-search-input" />
-              <button type="button" class="search-btn" id="full-search-btn" onclick="fullSearch()">Search</button>
+              <button type="button" class="search-btn" id="full-search-btn" onclick="fullSearch()" disabled>Search</button>
             </li>
           </ul>
         </nav>
@@ -124,6 +124,7 @@ Content-type: text/html
     <!-- SCRIPT -->
     <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.4.0/axios.min.js"></script>
     <script src="/view/main.js"></script>
     <script>hljs.highlightAll();</script>
   </body>
